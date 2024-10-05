@@ -42,14 +42,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-
-      - name: Check Node.js version
-        run: node -v  # Verify the Node.js version
-
+    
       - name: Run semantic-release
-        # if: github.repository == 'ali-shokoohi/casbin-go-client' && github.event_name == 'push'
+        if: github.repository == 'ali-shokoohi/casbin-go-client' && github.event_name == 'push'
         run: |
-          export PATH="$(yarn global bin):$PATH"
           yarn global add semantic-release
           semantic-release
         env:
