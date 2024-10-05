@@ -46,14 +46,10 @@ jobs:
       - name: Check Node.js version
         run: node -v  # Verify the Node.js version
 
-      - name: Install semantic-release
+      - name: Run semantic-release
+        if: github.repository == 'ali-shokoohi/casbin-go-client' && github.event_name == 'push'
         run: |
           yarn global add semantic-release 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run semantic-release
-        run: |
           semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
