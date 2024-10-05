@@ -44,14 +44,16 @@ jobs:
           node-version: 20
 
       - name: Check Node.js version
-        run: node -v
+        run: node -v  # Verify the Node.js version
+
+      - name: Install semantic-release
+        run: |
+          yarn global add semantic-release 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run semantic-release
-        # if: github.repository == 'casbin/casbin-go-client' && github.event_name == 'push'
         run: |
-          export PATH="$(yarn global bin):$PATH"
-          node -v
-          yarn global add semantic-release
           semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
