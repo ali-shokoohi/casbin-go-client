@@ -42,7 +42,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-    
+
+      - name: Check Node.js version
+        run: node -v
+
       - name: Run semantic-release
         # if: github.repository == 'casbin/casbin-go-client' && github.event_name == 'push'
         run: |
